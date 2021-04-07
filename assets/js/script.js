@@ -32,10 +32,13 @@ $('#4a').text(`${takeOut}, because it's currently week ${weekNum}`);
 var lockBtn = $(`.btn`);
 lockBtn.on('click', function (event) {
   event.preventDefault();
-  var switch1 = $(this).attr('class');
-  if(switch1 == `btn btn-primary active`){
+  var $toggleBtn = $(this).attr('class');
+  var $toggleText = $(this).parent().prev().children();
+  if($toggleBtn == `btn btn-primary active`){
     $(this).attr('class','btn btn-primary disabled')
+    $toggleText.prop('disabled', true);
   } else{
     $(this).attr('class','btn btn-primary active')
+    $toggleText.attr('disabled', false);
   }
 });
