@@ -1,7 +1,9 @@
 // Use dayjs to format the following variables:
 // 1. What is today's date in the following format: Jan 1st, 1999?
 var today = dayjs();
-$('#1a').text(today.format('MMM Do, YYYY'));
+$('#currentDay').text(today.format('[Today is ] dddd - MMM Do, YYYY'));
+
+console.log(dayjs().get('hour'));
 
 // 2. What is the day of the week today?
 var dayWeek = today.format('[Today is] dddd');
@@ -24,3 +26,16 @@ if (weekNum % 2) {
 }
 
 $('#4a').text(`${takeOut}, because it's currently week ${weekNum}`);
+
+
+// Lock Button Push to Activate/Disable
+var lockBtn = $(`.btn`);
+lockBtn.on('click', function (event) {
+  event.preventDefault();
+  var switch1 = $(this).attr('class');
+  if(switch1 == `btn btn-primary active`){
+    $(this).attr('class','btn btn-primary disabled')
+  } else{
+    $(this).attr('class','btn btn-primary active')
+  }
+});
