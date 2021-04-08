@@ -1,9 +1,10 @@
-// Use dayjs to format the following variables:
-// 1. What is today's date in the following format: Jan 1st, 1999?
+// Set header date
 var today = dayjs();
 $('#currentDay').text(today.format('[Today is ] dddd - MMM Do, YYYY'));
 
 console.log(dayjs().get('hour'));
+var currentHr = dayjs().get('hour');
+console.log(currentHr);
 
 // 2. What is the day of the week today?
 var dayWeek = today.format('[Today is] dddd');
@@ -34,11 +35,14 @@ lockBtn.on('click', function (event) {
   event.preventDefault();
   var $toggleBtn = $(this).attr('class');
   var $toggleText = $(this).parent().prev().children();
-  if($toggleBtn == `btn btn-primary active`){
-    $(this).attr('class','btn btn-primary disabled')
+  if($toggleBtn == `btn btn-primary active saveBtn btn-lg`){
+    $(this).attr('class','btn btn-primary disabled saveBtn btn-lg')
+    $(this).text(`🔒`);
     $toggleText.prop('disabled', true);
   } else{
-    $(this).attr('class','btn btn-primary active')
-    $toggleText.attr('disabled', false);
+    $(this).attr('class','btn btn-primary active saveBtn btn-lg')
+    $(this).text(`🔓`);
+    $toggleText.prop('disabled', false);
   }
 });
+
