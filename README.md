@@ -37,7 +37,9 @@ hold that color when saved... to unsave/clear the local storage, the user can
 push the button again. ![feature_003](assets/images/features_003.jpg)<br> The
 time blocks allow the user some 'grace' time before and after regular business
 hours to account for time zone differences. It starts at 06:00 and ends at
-18:00. [times are also shown in military time]
+18:00. [times are also shown in military time]<br> The local storage matches
+current date with storage date, meaning... If you save information on a
+different date then the current date, it will not load into the textarea.
 
 ## Credits
 
