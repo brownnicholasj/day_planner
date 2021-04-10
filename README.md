@@ -16,6 +16,8 @@ color codes the time.
 - Putting this solution together, it taught me a lot about traversing the DOM
   and quick/non-repetitive steps to format the page/table.
 
+![screenshot_001](assets/images/pageScreenshot.jpg)
+
 ## Table of Contents
 
 - [Features](#features)
