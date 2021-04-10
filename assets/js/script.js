@@ -37,15 +37,16 @@ $(document).ready(function () {
 		var spanEl = $('<span>');
 		var textareaEl = $('<textarea>');
 		var buttonEl = $('<button>');
+		var iEl = $('<i>');
 
 		container.attr('class', 'container-fluid');
 
 		//add elements per i -- classes are set in this process
-		sectionEl.addClass('row');
+		sectionEl.addClass('row m-2 p-2 d-flex justify-content-center border-0');
 		sectionEl.attr('data-label', current);
 		container.append(sectionEl);
 		var row = $(".row[data-label='" + current + "']");
-		articleEl.addClass('time-block col-12 m-0 p-0');
+		articleEl.addClass('time-block col-12 col-lg-9 m-0 p-0 shadow');
 		articleEl.attr('data-label', current);
 		row.append(articleEl);
 		var timeBlock = $(".time-block[data-label='" + current + "']");
@@ -58,8 +59,10 @@ $(document).ready(function () {
 		timeBlock.append(textareaEl);
 		buttonEl.addClass('saveBtn btn btn-outline-secondary active btn-lg col-1');
 		buttonEl.attr('data-label', current);
-		buttonEl.text('🔓');
 		timeBlock.append(buttonEl);
+		iEl.addClass('fas fa-lock');
+		var button = $(".saveBtn[data-label='" + current + "']");
+		button.append(iEl);
 	}
 
 	// Set background color of textarea based on current time of day
@@ -82,14 +85,14 @@ $(document).ready(function () {
 		event.preventDefault();
 		var $toggleBtn = $(this).attr('class');
 		var $toggleText = $(this).parent().prev().children();
-		// console.log('button push');
-		if ($toggleBtn == `saveBtn btn btn-outline-secondary active btn-lg`) {
+
+		if ($toggleBtn == `saveBtn btn btn-outline-secondary active btn-lg col-1`) {
 			$(this).attr(
 				'class',
-				'saveBtn btn btn-outline-secondary disabled btn-lg'
+				'saveBtn btn btn-outline-secondary disabled btn-lg col-1'
 			);
-			$(this).text(`🔒`);
 			$toggleText.prop('disabled', true);
+
 			// Local Storage Upon Saving
 			var inputText = $(this).prev().val();
 			var inputBox = $(this).siblings('span').text();
@@ -100,11 +103,12 @@ $(document).ready(function () {
 				text: inputText,
 			};
 			localStorage.setItem(inputBox, JSON.stringify(storageInput));
-			// console.log(inputText);
-			// console.log(inputBox);
 		} else {
-			$(this).attr('class', 'saveBtn btn btn-outline-secondary active btn-lg');
-			$(this).text(`🔓`);
+			//Clear local storage upon unlocking
+			$(this).attr(
+				'class',
+				'saveBtn btn btn-outline-secondary active btn-lg col-1'
+			);
 			$toggleText.prop('disabled', false);
 			var inputText = $(this).prev().val();
 			var inputBox = $(this).siblings('span').text();
@@ -113,22 +117,23 @@ $(document).ready(function () {
 			localStorage.setItem(inputBox, JSON.stringify(storageInput));
 		}
 	});
-	// Set input values if stored locally
+	// Set input values if stored locally [upon reload]
 	$('span').each(function (index) {
-		// console.log($(this).text());
 		var inputText = '';
 		var inputBox = $(this).text();
 		var inputDate = today.format('MM-DD-YYYY');
 		var storageInput = JSON.parse(localStorage.getItem(inputBox));
-		// console.log(storageInput);
+
 		if (storageInput !== null && storageInput.date == inputDate) {
 			$(this).next().append(storageInput.text);
-			// console.log($(this).parent().find('.saveBtn').attr('class'));
+
 			$(this)
 				.parent()
 				.find('.saveBtn')
-				.attr('class', 'saveBtn btn btn-outline-secondary disabled btn-lg');
-			$(this).parent().find('.saveBtn').text('🔒');
+				.attr(
+					'class',
+					'saveBtn btn btn-outline-secondary disabled btn-lg col-1'
+				);
 		}
 	});
 });
