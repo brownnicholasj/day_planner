@@ -22,6 +22,7 @@ color codes the time.
 
 - [Features](#features)
 - [Credits](#credits)
+- [Tests](#tests)
 
 ## Features
 
@@ -48,3 +49,26 @@ The formatting of the webpage utilizes Bootstrap (https://getbootstrap.com/).
 (https://fontawesome.com/)<br> The formatting of the webpage utilizes Google
 fonts (https://fonts.google.com/)<br> The date functionality of the webpage
 utilizes Dayjs date library.
+
+## Tests
+
+1. Run test before 18:00, times in the past will have grey color, current hour
+   will be red and times in future will be green
+   ![test001](assets/images/test001.jpg)
+
+2. Type any values into any box - click outside the box and the text stays in
+   the box. ![test002](assets/images/test002.jpg)
+
+3. Click on the lock icon, turning the icon box white and the lock icon grey
+   (this means the value is saved). ![test003](assets/images/test003.jpg)
+
+4. Click a different box and populate the text area, but do not click the save
+   icon. ![test004](assets/images/test004.jpg)
+
+- click refresh, the saved text will stay populated the non-saved box will be
+  blank ![test005](assets/images/test005.jpg)
+
+5. Click on the white saved icon from previous text to 'unsave' the value from
+   local storage. ![test006](assets/images/test006.jpg)
+
+- click refresh and the text value will be cleared
